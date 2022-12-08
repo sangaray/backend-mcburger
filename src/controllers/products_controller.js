@@ -3,7 +3,7 @@ const { API_Key } = process.env;
 const api_products = require("../data/data.json");
 
 const getProducts = async () => {
-  for (const [, valor] of Object.entries(api_products)) {
+  for (const [clave, valor] of Object.entries(api_products)) {
     await Products.bulkCreate(
       valor.map((elem) => {
         return {

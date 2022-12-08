@@ -23,7 +23,7 @@ router.get("/", async (req, res) => {
       );
     }
 
-    // Return the all products
+    // Otherwise return all products
     return res.status(200).json(products);
   } catch (e) {
     return res.status(404).send(e.message);
