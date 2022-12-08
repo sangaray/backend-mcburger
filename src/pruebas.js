@@ -6474,7 +6474,7 @@ const products = {
 }
 
 let arr = [];
-for (const [clave, valor] of Object.entries(products)) {
+/* for (const [clave, valor] of Object.entries(products)) {
     //console.log("Iterando...");
     console.log("La clave es: " + clave);
     //console.log("El valor es: " + valor);
@@ -6488,4 +6488,20 @@ for (const [clave, valor] of Object.entries(products)) {
         })
     }
     ));
+} */
+for (const [clave, valor] of Object.entries(products)) {
+    arr = (valor.map(elem => elem.branch));
 }
+const result = arr[0].map(elem => {
+    return {
+        station: elem.station,
+        address: elem.address,
+        locality: elem.locality,
+        gps: elem.gps,
+        stock: elem.stock
+    }
+}
+)
+
+console.log(arr);
+console.log(result);

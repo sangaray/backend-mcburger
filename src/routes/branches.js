@@ -10,8 +10,9 @@ const router = Router();
 router.get('/', async (req, res) => {
 
     try {
-       // const a = await getProducts();
-        res.status(200).send('Esto es branches');
+        const a = await getBranches();
+        console.log(a);
+        res.status(200).json(a);
 
     } catch (e) {
 

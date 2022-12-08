@@ -12,28 +12,28 @@ module.exports = (sequelize) => {
       unique: true,
     },
     station: {
-      type: DataTypes.STRING,
-      allowNull: false,
+      type: DataTypes.INTEGER,
+     // allowNull: false,
     },
     address: {
       type: DataTypes.STRING,
-      allowNull: false
+    //  allowNull: false
     },
     stock: {
       type: DataTypes.INTEGER,
-      allowNull: false
+     // allowNull: false
     },
     localityId: {
       type: DataTypes.INTEGER,
-      allowNull: false
+     // allowNull: false
     },
     productId: {
       type: DataTypes.INTEGER,
-      allowNull: false
+     // allowNull: false
     },
     gps: {
       type: DataTypes.STRING,
-      allowNull: false
+     // allowNull: false
     }
   });
 };
