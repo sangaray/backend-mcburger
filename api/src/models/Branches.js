@@ -7,6 +7,7 @@ module.exports = (sequelize) => {
     station: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      primaryKey: true
     },
     address: {
       type: DataTypes.STRING,

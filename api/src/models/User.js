@@ -29,7 +29,7 @@ module.exports = (sequelize) => {
             type: DataTypes.INTEGER
         },
         localityId: {
-            type: DataTypes.STRING
+            type: DataTypes.INTEGER
         },
         address: {
             type: DataTypes.STRING
