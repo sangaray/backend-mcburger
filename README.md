@@ -1,6 +1,6 @@
 ![HenryLogo](https://d31uz8lwfmyn8g.cloudfront.net/Assets/logo-henry-white-lg.png)
 
-# Final Project - Henry McBurger
+# Final Project - McBurger
 
 <p align="right">
   <img height="200" src="./cooking.png" />
