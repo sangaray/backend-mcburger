@@ -20,11 +20,6 @@ const basename = path.basename(__filename);
 
 const modelDefiners = [];
 
-/* tabla_Products(sequelize)
-tabla_Orders(sequelize)
-tabla_User(sequelize)
-tabla_Localities(sequelize) */
-
 
 // Leemos todos los archivos de la carpeta Models, los requerimos y agregamos al arreglo modelDefiners
 fs.readdirSync(path.join(__dirname, '/models'))
@@ -45,11 +40,6 @@ sequelize.models = Object.fromEntries(capsEntries);
 //const { Recipe, Diet } = sequelize.models;
 const { Orders, Products , Branches} = sequelize.models;
 // Aca vendrian las relaciones
-// Product.hasMany(Reviews);
-
-// Recordar que pide relacionar N:M
-//Recipe.belongsToMany(Diet, { through: 'Recipe_Diet'})
-//Diet.belongsToMany(Recipe, { through: 'Recipe_Diet'})
 
 Orders.belongsToMany(Products, { through: 'Order_Products'})
 Products.belongsToMany(Orders, { through: 'Order_Products'}) 
