@@ -19,7 +19,9 @@ router.get("/", async (req, res) => {
     if (name) {
       // If it does, search from the DB, and return them
       return res.json(
-        products.filter((product) => product.name.toLowerCase().includes(name.toLowerCase()))
+        products.filter((product) =>
+          product.name.toLowerCase().includes(name.toLowerCase())
+        )
       );
     }
 
@@ -27,6 +29,24 @@ router.get("/", async (req, res) => {
     return res.status(200).json(products);
   } catch (e) {
     return res.status(404).send(e.message);
+  }
+});
+
+router.get("/:id", async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    if (!isNaN(id) && !isNaN(parseInt(id))) {
+      const products = await searchProducts();
+
+      return res.json(
+        products.filter((product) => parseInt(product.id) === parseInt(id))
+      );
+    }
+
+    res.status(404).send("Not found with that ID");
+  } catch (e) {
+    res.status(401).send(e.message);
   }
 });
 
