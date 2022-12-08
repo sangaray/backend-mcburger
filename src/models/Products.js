@@ -3,7 +3,7 @@ const { DataTypes } = require('sequelize');
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
     // defino el modelo
-    sequelize.define('user', {
+    sequelize.define('products', {
         id: {
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -11,32 +11,28 @@ module.exports = (sequelize) => {
             autoIncrement: true,
             unique: true,
         },
-        first_name: {
+        name: {
             type: DataTypes.STRING,
             unique: true,
             allowNull: false,
         },
-        last_name: {
-            type: DataTypes.STRING,
-            allowNull: false,
+        ingredients: {
+            type: DataTypes.STRING
         },
-        email: {
-            type: DataTypes.STRING,
+        summary: {
+            type: DataTypes.TEXT
         },
-        password: {
-            type: DataTypes.STRING,
+        price: {
+            type: DataTypes.STRING
         },
-        phone_number: {
+        idBranch: {
             type: DataTypes.INTEGER
         },
-        localityId: {
-            type: DataTypes.STRING
+        idCategory: {
+            type: DataTypes.INTEGER
         },
-        address: {
-            type: DataTypes.STRING
-        },
-        userType: {
-            type: DataTypes.STRING
+        image: {
+            type: DataTypes.TEXT
         }
     },
         {
@@ -44,3 +40,4 @@ module.exports = (sequelize) => {
         }
     );
 };
+

@@ -5,8 +5,11 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define("localities", {
     id: {
-      type: DataTypes.STRING,
-      allowNull: false,
+      type: DataTypes.INTEGER,
+            allowNull: false,
+            primaryKey: true,
+            autoIncrement: true,
+            unique: true,
     },
     name: {
       type: DataTypes.STRING,

@@ -3,12 +3,8 @@ const { DataTypes } = require('sequelize');
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
     // defino el modelo
-    sequelize.define('products', {
-        /*  uiD:{
-           type: DataTypes.UUID,
-           defaultValue: DataTypes.UUIDV4,
-           primaryKey: true,
-         } */
+    sequelize.define('user', {
+
         id: {
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -16,28 +12,32 @@ module.exports = (sequelize) => {
             autoIncrement: true,
             unique: true,
         },
-        name: {
+        first_name: {
             type: DataTypes.STRING,
             unique: true,
             allowNull: false,
         },
-        ingredients: {
-            type: DataTypes.STRING
+        last_name: {
+            type: DataTypes.STRING,
+            allowNull: false,
         },
-        summary: {
-            type: DataTypes.TEXT
+        email: {
+            type: DataTypes.STRING,
         },
-        price: {
-            type: DataTypes.STRING
+        password: {
+            type: DataTypes.STRING,
         },
-        idBranch: {
+        phone_number: {
             type: DataTypes.INTEGER
         },
-        idCategory: {
-            type: DataTypes.INTEGER
+        localityId: {
+            type: DataTypes.STRING
         },
-        image: {
-            type: DataTypes.TEXT
+        address: {
+            type: DataTypes.STRING
+        },
+        userType: {
+            type: DataTypes.STRING
         }
     },
         {
@@ -45,4 +45,3 @@ module.exports = (sequelize) => {
         }
     );
 };
-

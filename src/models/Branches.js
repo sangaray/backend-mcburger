@@ -4,6 +4,13 @@ const { DataTypes } = require("sequelize");
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define("branches", {
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
+      unique: true,
+    },
     station: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -16,12 +23,16 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    localityId:{
+    localityId: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
     productId: {
       type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    gps: {
+      type: DataTypes.STRING,
       allowNull: false
     }
   });
