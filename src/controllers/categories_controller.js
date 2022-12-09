@@ -1,22 +1,20 @@
-const { Products, Categories } = require('../db');
+const { Products, Categories } = require("../db");
 const { API_Key } = process.env;
-const api_products = require('../data/data.json')
+const api_products = require("../data/data.json");
 
 const getCategories = async () => {
+  const cat = [];
 
-    const cat = [];
+  for (const [clave, valor] of Object.entries(api_products)) {
+    cat.push({ name: clave });
+  }
+  await Categories.bulkCreate(cat);
 
-    for (const [clave, valor] of Object.entries(api_products)) {
-
-        cat.push({ name: clave });
-    }
-    await Categories.bulkCreate(cat);
-
-    return cat;
-    //const queryAxios = await axios(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_Key}&addRecipeInformation=true&query=${title}`)
-    //console.log(queryAxios.data.results);
-    // console.log(title + '<--');
-    /*     const queryBD = await Recipe.findAll({
+  return cat;
+  //const queryAxios = await axios(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_Key}&addRecipeInformation=true&query=${title}`)
+  //console.log(queryAxios.data.results);
+  // console.log(title + '<--');
+  /*     const queryBD = await Recipe.findAll({
     
             attributes: ['id', 'title', 'image', 'summary', 'healthScore'],
             // attributes: ['id', 'title', 'image', 'summary']
@@ -56,6 +54,11 @@ const getCategories = async () => {
     
         const total = reFormat.concat(propS);
         return total; */
-}
+};
 
-module.exports = { getCategories }
+const getAllCategories = async () => {
+  const categories = await Categories.findAll({ attributes: ["id", "name"] });
+  return categories;
+};
+
+module.exports = { getCategories, getAllCategories };

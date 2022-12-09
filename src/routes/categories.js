@@ -1,19 +1,33 @@
-const { Router } = require('express');
-const { getCategories } = require('../controllers/categories_controller')
+const { Router } = require("express");
+const { getAllCategories } = require("../controllers/categories_controller");
 
 const router = Router();
 
-router.get('/', async (req, res) => {
+router.get("/", async (req, res) => {
+  try {
+    const a = await getAllCategories();
+    res.status(200).json(a);
+  } catch (e) {
+    return res.status(404).send("e.error");
+  }
+});
 
-    try {
-        const a = await getCategories();
-        //res.status(200).JSON(a);
-        res.status(200).json(a);
+router.get("/:id", async (req, res) => {
+  const id = req.params.id;
 
-    } catch (e) {
+  try {
+    if (!isNaN(id) && !isNaN(parseInt(id))) {
+      const categories = await getAllCategories();
 
-        return res.status(404).send('e.error')
+      return res.json(
+        categories.filter((product) => parseInt(product.id) === parseInt(id))
+      );
     }
-})
+
+    res.status(404).send("Not found with that ID");
+  } catch (e) {
+    res.status(401).send(e.message);
+  }
+});
 
 module.exports = router;

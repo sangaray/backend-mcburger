@@ -20,11 +20,13 @@
 const server = require("./src/app.js");
 const { conn } = require("./src/db.js");
 const { getProducts } = require("./src/controllers/products_controller");
+const { getCategories } = require("./src/controllers/categories_controller");
 
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
   // Add the data to the DB
   getProducts();
+  getCategories();
 
   // Start server
   server.listen(3001, () => {
