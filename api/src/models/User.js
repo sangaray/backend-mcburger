@@ -4,10 +4,14 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
     // defino el modelo
     sequelize.define('user', {
+
         id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
+            autoIncrement: true,
+            unique: true,
+
         },
         first_name: {
             type: DataTypes.STRING,
@@ -41,4 +45,6 @@ module.exports = (sequelize) => {
             timestamps: false,
         }
     );
+
 };
+

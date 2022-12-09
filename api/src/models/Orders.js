@@ -40,10 +40,7 @@ module.exports = (sequelize) => {
     branchId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-    }
-  },
-  {
-    timestamps: false,
-  }
-  );
+      
+    },
+  });
 };
