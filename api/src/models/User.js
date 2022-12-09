@@ -11,6 +11,7 @@ module.exports = (sequelize) => {
             primaryKey: true,
             autoIncrement: true,
             unique: true,
+
         },
         first_name: {
             type: DataTypes.STRING,
@@ -31,7 +32,7 @@ module.exports = (sequelize) => {
             type: DataTypes.INTEGER
         },
         localityId: {
-            type: DataTypes.STRING
+            type: DataTypes.INTEGER
         },
         address: {
             type: DataTypes.STRING
@@ -44,4 +45,6 @@ module.exports = (sequelize) => {
             timestamps: false,
         }
     );
+
 };
+

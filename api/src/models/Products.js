@@ -4,13 +4,14 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
     // defino el modelo
     sequelize.define('products', {
+    
         id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
             autoIncrement: true,
             unique: true,
-        },
+            },
         name: {
             type: DataTypes.STRING,
             unique: true,
@@ -29,6 +30,7 @@ module.exports = (sequelize) => {
             type: DataTypes.INTEGER
         },
         idCategory: {
+
             type: DataTypes.INTEGER
         },
         image: {
