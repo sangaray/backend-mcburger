@@ -60,6 +60,12 @@ Branches.belongsTo(Localities);
 Categories.hasMany(Products);
 Products.belongsTo(Categories);
 
+Branches.hasMany(Orders);
+Orders.belongsTo(Branches);
+
+User.hasMany(Orders);
+Orders.belongsTo(User);
+
 Orders.belongsToMany(Products, { through: 'Order_Products'})
 Products.belongsToMany(Orders, { through: 'Order_Products'}) 
 
