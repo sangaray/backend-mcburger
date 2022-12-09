@@ -23,8 +23,6 @@ const getAllProducts = async () => {
   } catch (error) {
     console.log(error);
   }
-  const result = await Products.findAll();
-    return result;
 };
 
 module.exports = {
