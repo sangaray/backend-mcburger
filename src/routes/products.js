@@ -10,13 +10,21 @@ const router = Router();
 router.get("/", async (req, res) => {
   // Check for params in the query
   const name = req.query.name;
+  const category = req.query.category;
 
   try {
     // Get all the products from the DB
     const products = await searchProducts();
 
-    // Check if query exists
-    if (name) {
+    // Check if category exists
+    if (category) {
+      return res.json(
+        products.filter((product) =>
+          product.idCategory == parseInt(category))
+        );
+    }
+    // Check if name exists
+    else if (name) {
       // If it does, search from the DB, and return them
       return res.json(
         products.filter((product) =>

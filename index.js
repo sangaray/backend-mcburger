@@ -25,8 +25,8 @@ const { getCategories } = require("./src/controllers/categories_controller");
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
   // Add the data to the DB
-  getProducts();
   getCategories();
+  getProducts();
 
   // Start server
   server.listen(3001, () => {
