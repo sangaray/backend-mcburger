@@ -10,19 +10,15 @@ const tabla_Branches = require('./models/Branches') */
 
 const fs = require('fs');
 const path = require('path');
-const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
+const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
 
-<<<<<<< HEAD:api/src/db.js
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/mcburger`, {
-=======
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, {
->>>>>>> 14f20456a0fbc2e54d258f8c3ad5687e0b808c61:src/db.js
   logging: false, // set to console.log to see the raw SQL queries
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
 });
 const basename = path.basename(__filename);
 
-const modelDefiners = [];
+const modelDefiners = []; 
 
 /* tabla_Products(sequelize)
 tabla_Orders(sequelize)
@@ -46,15 +42,15 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-<<<<<<< HEAD:api/src/db.js
-const {User, Localities, Branches, Products, Categories, Orders} = sequelize.models;
-
-=======
 //const { Recipe, Diet } = sequelize.models;
-const { Orders, Products , Branches} = sequelize.models;
->>>>>>> 14f20456a0fbc2e54d258f8c3ad5687e0b808c61:src/db.js
+const { Orders, Products , Branches, Localities, Categories, User} = sequelize.models;
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
+
+// Recordar que pide relacionar N:M
+//Recipe.belongsToMany(Diet, { through: 'Recipe_Diet'})
+//Diet.belongsToMany(Recipe, { through: 'Recipe_Diet'})
+
 Localities.hasMany(User);
 User.belongsTo(Localities);
 
@@ -63,22 +59,6 @@ Branches.belongsTo(Localities);
 
 Categories.hasMany(Products);
 Products.belongsTo(Categories);
-
-User.hasMany(Products);
-Products.belongsTo(User);
-
-Branches.hasMany(Orders);
-Orders.belongsTo(Branches);
-
-Orders.belongsToMany(Products, { through: 'OrderProduct' });
-Products.belongsToMany(Orders, { through: 'OrderProduct' });
-
-Products.belongsToMany(Branches, { through: 'ProductBranch' });
-Branches.belongsToMany(Products, { through: 'ProductBranch' });
-
-// Recordar que pide relacionar N:M
-//Recipe.belongsToMany(Diet, { through: 'Recipe_Diet'})
-//Diet.belongsToMany(Recipe, { through: 'Recipe_Diet'})
 
 Orders.belongsToMany(Products, { through: 'Order_Products'})
 Products.belongsToMany(Orders, { through: 'Order_Products'}) 
