@@ -6489,7 +6489,7 @@ let arr = [];
     }
     ));
 } */
-for (const [clave, valor] of Object.entries(products)) {
+/* for (const [clave, valor] of Object.entries(products)) {
     arr = (valor.map(elem => elem.branch));
 }
 const result = arr[0].map(elem => {
@@ -6499,6 +6499,19 @@ const result = arr[0].map(elem => {
         locality: elem.locality,
         gps: elem.gps,
         stock: elem.stock
+    }
+}
+)
+
+console.log(arr);
+console.log(result); */
+
+for (const [clave, valor] of Object.entries(products)) {
+    arr = (valor.map(elem => elem.branch));
+}
+const result = arr[0].map(elem => {
+    return {
+        name: elem.locality,
     }
 }
 )
