@@ -19,10 +19,18 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
+const { loadProducts } = require('./src/controllers/products_controller')
+const { loadLocalities } = require('./src/controllers/localities_controller')
+const { loadCategories } = require('./src/controllers/categories_controller')
+const { loadBranches} = require('./src/controllers/branches_controller')
 
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
-  server.listen(3001, () => {
+  server.listen(3001, async () => {
+    await loadProducts();
+    await loadLocalities();
+    await loadCategories();
+    await loadBranches();
     console.log('%s ----> listening at 3001'); // eslint-disable-line no-console
   });
 });

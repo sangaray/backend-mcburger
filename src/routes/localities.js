@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
 
     try {
         const a = await getLocalities();
-        console.log(a);
+        //console.log(a);
         res.status(200).json(a);
 
     } catch (e) {
