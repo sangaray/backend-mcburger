@@ -2737,7 +2737,8 @@
                     "stock": "25"
                 }
             ],
-            "categories": "coffee"
+            "categories": "coffee",
+            "image": "https://www.mcdonalds.com.sg/sites/default/files/2022-01/McCafe_Latte.png"
         },
         {
             "id": 28,
