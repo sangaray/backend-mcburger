@@ -5130,7 +5130,7 @@
                     "stock": "25"
                 }
             ],
-            "images": "https://www.semana.com/resizer/3FFZRGhilYPZQBh_b6NFJEtijAc=/fit-in/1280x0/smart/filters:format(jpg):quality(80)/cloudfront-us-east-1.images.arcpublishing.com/semana/5IVPUHTNIVBDDK7EGPOYUUFQU4.jpg"
+            "image": "https://www.semana.com/resizer/3FFZRGhilYPZQBh_b6NFJEtijAc=/fit-in/1280x0/smart/filters:format(jpg):quality(80)/cloudfront-us-east-1.images.arcpublishing.com/semana/5IVPUHTNIVBDDK7EGPOYUUFQU4.jpg"
         },
         {
             "id": 53,
@@ -5229,7 +5229,7 @@
                     "stock": "25"
                 }
             ],
-            "images": "https://img.cocinarico.es/2020-01/aros-de-cebolla-fritos-1.webp"
+            "image": "https://img.cocinarico.es/2020-01/aros-de-cebolla-fritos-1.webp"
         },
         {
             "id": 54,
@@ -5328,7 +5328,7 @@
                     "stock": "25"
                 }
             ],
-            "images": "https://s3-eu-central-1.amazonaws.com/www.burgerking.com.ar.v2/wp-media-folder-bk-argentina//home/ubuntu/preview/menu-app/frontend/apps/marketing-website-wordpress-app/web/app/uploads/sites/5/foto-menu-muzzasticks.png"
+            "image": "https://s3-eu-central-1.amazonaws.com/www.burgerking.com.ar.v2/wp-media-folder-bk-argentina//home/ubuntu/preview/menu-app/frontend/apps/marketing-website-wordpress-app/web/app/uploads/sites/5/foto-menu-muzzasticks.png"
         },
         {
             "id": 55,
@@ -5428,7 +5428,7 @@
                     "stock": "25"
                 }
             ],
-            "images": "https://s3-eu-central-1.amazonaws.com/www.burgerking.com.ar.v2/wp-media-folder-burger-king-argentina//home/ubuntu/preview/menu-app/frontend/apps/marketing-website-wordpress-app/web/app/uploads/sites/5/Papas-Cheddar.png"
+            "image": "https://s3-eu-central-1.amazonaws.com/www.burgerking.com.ar.v2/wp-media-folder-burger-king-argentina//home/ubuntu/preview/menu-app/frontend/apps/marketing-website-wordpress-app/web/app/uploads/sites/5/Papas-Cheddar.png"
         }
     ],
     "Vegetable": [
