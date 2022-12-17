@@ -48,7 +48,7 @@ const {User, Localities, Branches, Products, Categories, Orders} = sequelize.mod
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
-Localities.hasMany(User);
+/* Localities.hasMany(User);
 User.belongsTo(Localities);
 
 Localities.hasMany(Branches);
@@ -77,7 +77,38 @@ Orders.belongsToMany(Products, { through: 'Order_Products'})
 Products.belongsToMany(Orders, { through: 'Order_Products'}) 
 
 Products.belongsToMany(Branches, { through: 'Products_Branch'})
-Branches.belongsToMany(Products, { through: 'Products_Branch'}) 
+Branches.belongsToMany(Products, { through: 'Products_Branch'})  */
+
+Localities.belongsToMany(User, { through: "UserLocalities" });
+User.belongsToMany(Localities, { through: "UserLocalities" });
+
+Localities.belongsToMany(Branches, { through: "BranchesLocalities" });
+Branches.belongsToMany(Localities, { through: "BranchesLocalities" });
+
+Categories.belongsToMany(Products, { through: "ProductsCategories" });
+Products.belongsToMany(Categories, { through: "ProductsCategories" });
+
+User.belongsToMany(Products, { through: "ProductsUser" });
+Products.belongsToMany(User, { through: "ProductsUser" });
+
+Branches.belongsToMany(Orders, { through: "OrdersBranches" });
+Orders.belongsToMany(Branches, { through: "OrdersBranches" });
+
+Orders.belongsToMany(Products, { through: "OrderProduct" });
+Products.belongsToMany(Orders, { through: "OrderProduct" });
+
+Products.hasMany(Branches, { foreignKey: "stationId" });
+Branches.belongsToMany(Products, { through: "ProductBranch" });
+
+// Recordar que pide relacionar N:M
+//Recipe.belongsToMany(Diet, { through: 'Recipe_Diet'})
+//Diet.belongsToMany(Recipe, { through: 'Recipe_Diet'})
+
+Orders.belongsToMany(Products, { through: "Order_Products" });
+Products.belongsToMany(Orders, { through: "Order_Products" });
+
+Products.belongsToMany(Branches, { through: "Products_Branch" });
+Branches.belongsToMany(Products, { through: "Products_Branch" })
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

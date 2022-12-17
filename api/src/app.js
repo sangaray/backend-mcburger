@@ -2,15 +2,22 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
-
+const dotenv = require('dotenv')
 const categories = require('./routes/categories')
 const products = require('./routes/products')
 const branches = require('./routes/branches')
 const localities = require('./routes/localities')
+const mercadoPago = require ('./routes/mercadoPago')
+const orders = require('./routes/orders')
 
 require('./db.js');
 
 const server = express();
+dotenv.config();
+
+          
+
+
 
 server.name = 'API';
 
@@ -30,7 +37,10 @@ server.use('/categories', categories);
 server.use('/products', products);
 server.use('/branches', branches);
 server.use('/localities', localities);
-
+server.use('/payment', mercadoPago);
+server.use('/notificationPayment', mercadoPago);
+server.use('/buyProduct', mercadoPago);
+server.use('/orders', orders);
 // Error catching endware.
 server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
   const status = err.status || 500;
