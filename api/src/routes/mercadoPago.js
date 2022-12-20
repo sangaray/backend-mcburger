@@ -1,36 +1,9 @@
- const { Router } = require('express');
-const { createPayment, notificationPayment, buyProduct} = require('../controllers/paymentController');
+const { Router } = require('express');
+const { createPayment,  buyProduct} = require('../controllers/paymentController');
 const router = Router();
 
 router.post('/', createPayment);
-router.post('/', notificationPayment) 
-router.get('/', buyProduct)
-
-/* router.post('/', async (req, res) => {
-
-  try {
-      const a = await createPayment();
-      console.log(a);
-      res.status(200).json(a);
-
-  } catch (e) {
-
-      return res.status(404).send('error')
-  }
-})
-
-router.post('/', async (req, res) => {
-
-  try {
-      const a = await notificationPayment();
-      console.log(a);
-      res.status(200).json(a);
-
-  } catch (e) {
-
-      return res.status(404).send('error')
-  }
-}) */
+//router.get('/', buyProduct);
 
 
 module.exports = router;

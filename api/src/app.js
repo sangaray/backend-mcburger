@@ -8,7 +8,8 @@ const products = require('./routes/products')
 const branches = require('./routes/branches')
 const localities = require('./routes/localities')
 const mercadoPago = require ('./routes/mercadoPago')
-const orders = require('./routes/orders')
+const notif = require ('./routes/notifications')
+
 
 require('./db.js');
 
@@ -38,9 +39,12 @@ server.use('/products', products);
 server.use('/branches', branches);
 server.use('/localities', localities);
 server.use('/payment', mercadoPago);
-server.use('/notificationPayment', mercadoPago);
-server.use('/buyProduct', mercadoPago);
-server.use('/orders', orders);
+console.log('/payment')
+server.use('/notificationPayment', notif);
+console.log('/notificationPayment');
+
+//server.use('/buyProduct', mercadoPago);
+//server.use('/orders', orders);
 // Error catching endware.
 server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
   const status = err.status || 500;
