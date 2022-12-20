@@ -18,11 +18,14 @@
 //                       `=---='
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
+//const cors = require('cors')
+//server.use(cors({ origin: "*"}))
 const { conn } = require('./src/db.js');
 const { loadProducts } = require('./src/controllers/products_controller')
 const { loadLocalities } = require('./src/controllers/localities_controller')
 const { loadCategories } = require('./src/controllers/categories_controller')
 const { loadBranches} = require('./src/controllers/branches_controller')
+const { loadUser} = require('./src/controllers/user_controller')
 
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
@@ -31,6 +34,7 @@ conn.sync({ force: true }).then(() => {
     await loadLocalities();
     await loadCategories();
     await loadBranches();
+    await loadUser();
     console.log('%s ----> listening at 3001'); // eslint-disable-line no-console
   });
 });

@@ -12,23 +12,32 @@ module.exports = (sequelize) => {
             autoIncrement: true,
             unique: true,
         },
+        name: {
+            type: DataTypes.STRING,
+           // allowNull: false,
+        },
         first_name: {
             type: DataTypes.STRING,
-            unique: true,
-            allowNull: false,
+           // allowNull: false,
         },
         last_name: {
             type: DataTypes.STRING,
-            allowNull: false,
+            //allowNull: false,
         },
         email: {
             type: DataTypes.STRING,
+            //unique: true,
+            //allowNull: false,
+        },
+        picture: {
+            type: DataTypes.TEXT,
         },
         password: {
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT,
+            //allowNull: false,
         },
         phone_number: {
-            type: DataTypes.INTEGER
+            type: DataTypes.STRING
         },
         localityId: {
             type: DataTypes.INTEGER
@@ -37,6 +46,12 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING
         },
         userType: {
+            type: DataTypes.STRING
+        },
+        wallet:{
+            type: DataTypes.INTEGER,
+        },
+        state:{
             type: DataTypes.STRING
         }
     },

@@ -7,6 +7,7 @@ const categories = require('./routes/categories')
 const products = require('./routes/products')
 const branches = require('./routes/branches')
 const localities = require('./routes/localities')
+const user = require('./routes/user')
 
 require('./db.js');
 
@@ -30,6 +31,7 @@ server.use('/categories', categories);
 server.use('/products', products);
 server.use('/branches', branches);
 server.use('/localities', localities);
+server.use('/user', user);
 
 // Error catching endware.
 server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
