@@ -8,7 +8,7 @@ const products = require('./routes/products')
 const branches = require('./routes/branches')
 const localities = require('./routes/localities')
 const mercadoPago = require ('./routes/mercadoPago')
-const notif = require ('./routes/notifications')
+
 
 
 require('./db.js');
@@ -39,9 +39,7 @@ server.use('/products', products);
 server.use('/branches', branches);
 server.use('/localities', localities);
 server.use('/payment', mercadoPago);
-console.log('/payment')
-server.use('/notificationPayment', notif);
-console.log('/notificationPayment');
+
 
 //server.use('/buyProduct', mercadoPago);
 //server.use('/orders', orders);
