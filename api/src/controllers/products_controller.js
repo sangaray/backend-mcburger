@@ -5,11 +5,12 @@ const { getAllCategories } = require("./categories_controller");
 
 const getProducts = async () => {
   const categories = await getAllCategories();
-
+ //console.log(categories)
   for (const [clave, valor] of Object.entries(api_products)) {
     await Products.bulkCreate(
       valor.map((elem) => {
         return {
+          id: elem.id,
           name: elem.name,
           ingredients: elem.ingredients.join(" - "),
           summary: elem.summary,
