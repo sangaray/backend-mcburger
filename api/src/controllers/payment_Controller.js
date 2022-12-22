@@ -1,13 +1,14 @@
  
   const mercadopago = require("mercadopago");
 
-  const createPayment = async (req, res) =>{
+  const createPayment = async (params) =>{
     
      mercadopago.configure({
       access_token: process.env.ACCESS_TOKEN
     });
-       
-    const products = req.body;
+    const products = params;
+    console.log(products)
+
 
     let preference = {
       items: products.map((p) => {
@@ -31,18 +32,24 @@
         binary_mode: true,
       
     };
-    console.log(preference)
-    
-    mercadopago.preferences
-      .create(preference)
-      .then(function (response) {
-        console.log(response.body.init_point)
-        res.status(200).send(`<a href="${response.body.init_point}"> GO TO PAY</a>`)
-      })
-      .catch(function (error) {
-        res.status(400).send({error: error.message})
-      });
-    return preference;
+
+
+    let response = await mercadopago.preferences.create(preference)
+    .catch(function (error) {
+        console.log(error);
+    });
+    return response.body.init_point
+
+    // mercadopago.preferences
+    //   .create(preference)
+    //   .then(function (response) {
+    //     console.log(response.body.init_point)
+    //     res.status(200).send(`<a href="${response.body.init_point}"> GO TO PAY</a>`)
+    //   })
+    //   .catch(function (error) {
+    //     res.status(400).send({error: error.message})
+    //   });
+    // return preference;
   }
 
 
