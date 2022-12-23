@@ -27,17 +27,31 @@ router.get('/', validateToken, async (req, res) => {
 router.post('/', async (req, res) => {
 
     try {
-
+        //console.log(req.body.email + 'ññ');
         const user = await generateUser(req.body);
+        //console.log(user, ' usuariooooo');
         const userBbdd = await findUserBbdd(user.email);
-
-        const data = { email: userBbdd.email }
-        const token = jwt.sign(data, KEY_SECRET, { expiresIn: '1m' })
-        //console.log(token + 'ppppp');
-        res.status(200).json(token);
-
+        //console.log(userBbdd, ' aaaaaa');
+        //const data = { email: userBbdd.email }
+        if (userBbdd.email) {
+            const token = jwt.sign({ email: userBbdd.email }, KEY_SECRET, { expiresIn: '1m' })
+            const data = {
+                email: userBbdd.email,
+                name: userBbdd.name,
+                picture: userBbdd.picture,
+                wallet: userBbdd.wallet,
+                userType: userBbdd.userType,
+                address: userBbdd.address,
+                phone: userBbdd.phone_number,
+                token: token,
+                register: 'google',
+                error: false
+            }
+            //console.log(data.token + ' <-TOKEN');
+            res.status(200).json(data);
+        }
     } catch (e) {
-        res.status(404).json({ msg: e.error })
+        res.status(405).json({ msg: e.error })
     }
 })
 
@@ -60,12 +74,12 @@ router.post('/login', async (req, res) => {
         const { email, password } = req.body
         console.log(email + ' | ' + password);
         const userBbdd = await findUserBbdd(email);
-       // console.log(userBbdd + '9999');
-        if(userBbdd.msg == 'error') res.status(201).json({msg: 'nadda'})
+        // console.log(userBbdd + '9999');
+        if (userBbdd.msg == 'error') res.status(201).json({ msg: 'nadda' })
 
         if (password == userBbdd.password) {
             const token = jwt.sign({ email: userBbdd.email }, KEY_SECRET, { expiresIn: '1m' })
-           // console.log('CORRECTOOOOO');
+             //console.log('CORRECTOOOOO');
             const data = {
                 email: userBbdd.email,
                 name: userBbdd.name,
@@ -75,6 +89,7 @@ router.post('/login', async (req, res) => {
                 address: userBbdd.address,
                 phone: userBbdd.phone_number,
                 token: token,
+                register: 'bbdd',
                 error: false
             }
             res.status(201).json(data)
@@ -89,6 +104,7 @@ router.post('/login', async (req, res) => {
                 address: null,
                 phone: null,
                 token: null,
+                register: null,
                 error: true
             }
             res.status(201).json(data)

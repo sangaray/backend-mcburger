@@ -11,19 +11,28 @@ const generateUser = async (params) => {
 
     try {
         const { name, email, picture } = params;
-        const newUser = await User.findOrCreate({
-            where: { email: email },
-            defaults: {
-                name: name,
-                picture: picture
-            }
-        })
-        return newUser[0];
-
+        const user = await User.findOne({ where: { email: email } });
+        //console.log(user, 'TTTTTTT');
+        if (!user) {
+            const newUser = await User.findOrCreate({
+                where: { email: email },
+                defaults: {
+                    name: name,
+                    picture: picture
+                }
+            })
+            console.log(newUser, ' new user');
+            return newUser[0];
+        } else {            
+                user.picture = picture;
+                user.name = name;  
+                await user.save();
+                return user;
+        }
     } catch (error) {
-        console.log(error.message);
+        //console.log(error.message);
         //return res.status(404).json(error)
-        res.status(404).json({ msg: 'error en solicitud' })
+        res.status(403).json({ msg: 'error en solicitud' })
     }
 }
 
@@ -54,7 +63,7 @@ const findUserBbdd = async (email) => {
     if (!email) return ({ msg: 'no escribieron el email' })
     const user = await User.findOne({ where: { email: email } });
     if (user) return user;
-    return [{msg: 'error'}]
+    return [{ msg: 'error' }]
 }
 
 const loadUser = async () => {
