@@ -11,7 +11,7 @@ const { user } = require('pg/lib/defaults');
 
 const router = Router();
 
-router.get('/', validateToken, async (req, res) => {
+router.get('/', async (req, res) => {
 
     try {
 
