@@ -39,6 +39,7 @@ server.use('/products', products);
 server.use('/branches', branches);
 server.use('/localities', localities);
 server.use('/payment', mercadoPago);
+server.use("/orders", orders);
 
 
 //server.use('/buyProduct', mercadoPago);
