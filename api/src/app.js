@@ -7,6 +7,7 @@ const categories = require('./routes/categories')
 const products = require('./routes/products')
 const branches = require('./routes/branches')
 const localities = require('./routes/localities')
+const orders = require('./routes/orders')
 const mercadoPago = require ('./routes/mercadoPago')
 
 
