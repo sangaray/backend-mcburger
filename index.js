@@ -34,7 +34,7 @@ conn.sync({ force: true }).then(() => {
     await loadLocalities();
     await loadCategories();
     await loadBranches();
-    await loadUser();
+    //await loadUser();
     console.log('%s ----> listening at 3001'); // eslint-disable-line no-console
   });
 });

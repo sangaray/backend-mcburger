@@ -1,13 +1,9 @@
 const { Router } = require('express');
-const { Op } = require('sequelize')
 const jwt = require('jsonwebtoken');
 const { KEY_SECRET } = process.env;
-// Importar todos los routers;
-// Ejemplo: const authRouter = require('./auth.js');
-const { User } = require('../db'); // ACA importo donde ejecuto los models de tablas
-//const { } = require('../controllers/controllers')
-const { generateUser, getUsers, updateUser, findUserBbdd } = require('../controllers/user_controller');
-const { user } = require('pg/lib/defaults');
+
+const { generateUser, getUsers, updateUser, findUserBbdd, validateToken } = require('../controllers/user_controller');
+
 
 const router = Router();
 
@@ -38,6 +34,8 @@ router.post('/', async (req, res) => {
             const data = {
                 email: userBbdd.email,
                 name: userBbdd.name,
+                first_name: userBbdd.first_name,
+                last_name: userBbdd.last_name,
                 picture: userBbdd.picture,
                 wallet: userBbdd.wallet,
                 userType: userBbdd.userType,
@@ -79,10 +77,12 @@ router.post('/login', async (req, res) => {
 
         if (password == userBbdd.password) {
             const token = jwt.sign({ email: userBbdd.email }, KEY_SECRET, { expiresIn: '1m' })
-             //console.log('CORRECTOOOOO');
+            //console.log('CORRECTOOOOO');
             const data = {
                 email: userBbdd.email,
                 name: userBbdd.name,
+                first_name: userBbdd.first_name,
+                last_name: userBbdd.last_name,
                 picture: userBbdd.picture,
                 wallet: userBbdd.wallet,
                 userType: userBbdd.userType,
@@ -136,22 +136,5 @@ router.post('/test', validateToken, async (req, res) => {
         return res.status(404).json(e.message)
     }
 })
-
-function validateToken(req, res, next) {
-
-    const accessToken = req.body.token;
-    console.log(accessToken + '  .....');
-    if (!accessToken) res.status(403).json({ msg: 'Acceso denegado' });
-
-    jwt.verify(accessToken, 'mcburguer', (err, user) => {
-        if (err) {
-            const data = { msg: 'Acceso denegado, token expired or incorrect' }
-            res.status(400).json({ msg: 'Acceso denegado, token expired or incorrect' })
-        } else {
-            next();
-        }
-    })
-}
-
 
 module.exports = router;

@@ -1,5 +1,7 @@
 const { User } = require('../db');
 const { encript } = require('../controllers/encript_controller')
+const jwt = require('jsonwebtoken');
+const { KEY_SECRET } = process.env;
 
 const getUsers = async () => {
 
@@ -93,24 +95,20 @@ const loadUser = async () => {
 
 }
 
-module.exports = { getUsers, generateUser, updateUser, findUserBbdd, loadUser }
+const validateToken = (req, res, next) =>{
 
-/* const generateUser = async (params) => {
+    const accessToken = req.body.token;
+   // console.log(accessToken + '  .....');
+    if (!accessToken) res.status(403).json({ msg: 'Acceso denegado' });
 
-    try {
-        const { first_name, last_name, email, password, phone_number, address, userType } = params;
-        if (!first_name || !last_name || !email || !password) throw new Error('Faltan datos para crear la receta');
-        const existUser = await User.findAll({ where: { email: email } })
-        if (existUser.length) throw new Error('El mail ya esta registrado')
-        const passwordEncript = await encript(password);
-   
-        console.log(passwordEncript);
-        const newUser = await User.create({ first_name, last_name, email, password: passwordEncript, phone_number, address, userType});
-        return newUser;
-
-    } catch (error) {
-        console.log(error.message);
-        return res.status(404).json(error)
-    }
+    jwt.verify(accessToken, KEY_SECRET, (err, user) => {
+        if (err) {
+            const data = { msg: 'Acceso denegado, token expired or incorrect' }
+            res.status(400).json({ msg: 'Acceso denegado, token expired or incorrect' })
+        } else {
+            next();
+        }
+    })
 }
- */
+
+module.exports = { getUsers, generateUser, updateUser, findUserBbdd, loadUser, validateToken }
