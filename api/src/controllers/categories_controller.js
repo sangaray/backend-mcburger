@@ -2,7 +2,7 @@ const { Products, Categories } = require("../db");
 const { API_Key } = process.env;
 const api_products = require("../data/data.json");
 
-const getCategories = async () => {
+const loadCategories = async () => {
   const cat = [];
 
   for (const [clave, valor] of Object.entries(api_products)) {
@@ -11,7 +11,6 @@ const getCategories = async () => {
   await Categories.bulkCreate(cat);
 
   return cat;
-
 };
 
 const getAllCategories = async () => {
@@ -19,4 +18,4 @@ const getAllCategories = async () => {
   return categories;
 };
 
-module.exports = { getCategories, getAllCategories };
+module.exports = { loadCategories, getAllCategories };

@@ -24,9 +24,10 @@ module.exports = (sequelize) => {
     orderDate: {
       type: DataTypes.DATEONLY,
       allowNull: false,
+      default: DataTypes.NOW,
     },
     quantity: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     totalPrice: {
@@ -34,13 +35,12 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     productId: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     branchId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      
     },
   });
 };

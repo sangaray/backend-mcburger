@@ -6,10 +6,10 @@ module.exports = (sequelize) => {
   sequelize.define("localities", {
     id: {
       type: DataTypes.INTEGER,
-            allowNull: false,
-            primaryKey: true,
-            autoIncrement: true,
-            unique: true,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
+      unique: true,
     },
     name: {
       type: DataTypes.STRING,
