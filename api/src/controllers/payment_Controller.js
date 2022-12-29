@@ -1,12 +1,11 @@
 const mercadopago = require("mercadopago");
 
-const createPayment = async (params) => {
+const createPayment = async (req, res) => {
   mercadopago.configure({
     access_token: process.env.ACCESS_TOKEN,
   });
 
-  const products = params;
-  console.log(products);
+  const products = req.body;
 
   let preference = {
     items: products.map((p) => {
@@ -21,9 +20,9 @@ const createPayment = async (params) => {
     }),
 
     back_urls: {
-      failure: "http://localhost:3000/Cart/failure",
+      failure: "http://localhost:3000/payment",
       pending: "/pending",
-      success: "http://localhost:3000/Cart/success", // aqui despues va a ir deploy vercel/ la ruta que tenga declarada en el front
+      success: "http://localhost:3000/payment", // aqui despues va a ir deploy vercel/ la ruta que tenga declarada en el front
     },
     auto_return: "approved",
     notification_url:
@@ -31,12 +30,15 @@ const createPayment = async (params) => {
     binary_mode: true,
   };
 
-  let response = await mercadopago.preferences
+  mercadopago.preferences
     .create(preference)
+    .then(function (response) {
+      res.status(200).send(response.body.init_point);
+    })
     .catch(function (error) {
-      console.log(error);
+      res.status(400).send({ error: error.message });
     });
-  return response.body.init_point;
+  return preference;
 };
 
 module.exports = {

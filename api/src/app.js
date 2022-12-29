@@ -8,6 +8,7 @@ const products = require("./routes/products");
 const branches = require("./routes/branches");
 const localities = require("./routes/localities");
 const mercadoPago = require("./routes/mercadoPago");
+const orders = require("./routes/orders");
 const user = require("./routes/user");
 
 require("./db.js");
@@ -37,6 +38,7 @@ server.use("/products", products);
 server.use("/branches", branches);
 server.use("/localities", localities);
 server.use("/payment", mercadoPago);
+server.use("/orders", orders);
 server.use("/user", user);
 
 //server.use('/buyProduct', mercadoPago);
