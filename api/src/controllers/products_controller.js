@@ -3,9 +3,9 @@ const { API_Key } = process.env;
 const api_products = require("../data/data.json");
 const { getAllCategories } = require("./categories_controller");
 
-const getProducts = async () => {
+const loadProducts = async () => {
   const categories = await getAllCategories();
- //console.log(categories)
+  //console.log(categories)
   for (const [clave, valor] of Object.entries(api_products)) {
     await Products.bulkCreate(
       valor.map((elem) => {
@@ -16,7 +16,8 @@ const getProducts = async () => {
           summary: elem.summary,
           price: elem.price,
           image: elem.image,
-          idCategory: categories.filter((cat) => cat.name.includes(clave))[0].id,
+          idCategory: categories.filter((cat) => cat.name.includes(clave))[0]
+            .id,
         };
       })
     );
@@ -32,4 +33,4 @@ const searchProducts = async () => {
   return products;
 };
 
-module.exports = { getProducts, searchProducts };
+module.exports = { loadProducts, searchProducts };
