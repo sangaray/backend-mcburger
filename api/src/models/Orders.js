@@ -41,7 +41,10 @@ module.exports = (sequelize) => {
     branchId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      
+    },
+    status: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
   });
 };

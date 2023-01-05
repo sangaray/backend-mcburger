@@ -13,6 +13,7 @@ const createOrder = async (data) => {
         totalPrice: parseFloat(data.totalPrice),
         productId: data.productId,
         branchId: data.branchId,
+        status: "Approved",
       });
 
       await transporter.sendMail({
