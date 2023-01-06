@@ -81,8 +81,7 @@ Branches.belongsToMany(Products, { through: 'ProductBranch' });
 //Recipe.belongsToMany(Diet, { through: 'Recipe_Diet'})
 //Diet.belongsToMany(Recipe, { through: 'Recipe_Diet'})
 
-Orders.belongsToMany(Products, { through: 'Order_Products'})
-Products.belongsToMany(Orders, { through: 'Order_Products'}) 
+
 
 Products.belongsToMany(Branches, { through: 'Products_Branch'})
 Branches.belongsToMany(Products, { through: 'Products_Branch'})  */
