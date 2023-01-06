@@ -125,9 +125,6 @@ Comment.belongsToMany(Products, { through: "products_comments" });
 User.belongsToMany(Comment, { through: "users_comments" });
 Comment.belongsToMany(User, { through: "users_comments" });
 
-User.belongsToMany(Comment, { as: "reported", through: "user_comment" });
-Comment.belongsToMany(User, { as: "reported", through: "comment_user" });
-
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
   conn: sequelize, // para importart la conexión { conn } = require('./db.js');

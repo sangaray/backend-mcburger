@@ -4,6 +4,13 @@ const { DataTypes } = require("sequelize");
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define("comment", {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+      allowNull: false,
+      unique: true,
+    },
     comment: {
       type: DataTypes.TEXT,
       allowNull: false,
@@ -11,6 +18,12 @@ module.exports = (sequelize) => {
     rating: {
       type: DataTypes.INTEGER,
       allowNull: false,
+    },
+    idUser: {
+      type: DataTypes.STRING,
+    },
+    idProduct: {
+      type: DataTypes.INTEGER,
     },
   });
 };

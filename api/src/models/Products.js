@@ -36,11 +36,6 @@ module.exports = (sequelize) => {
       image: {
         type: DataTypes.TEXT,
       },
-      rating: {
-        type: DataTypes.DOUBLE,
-        allowNull: false,
-        defaultValue: 0,
-      },
     },
     {
       timestamps: false,

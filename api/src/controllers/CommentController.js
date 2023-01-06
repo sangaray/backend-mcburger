@@ -1,26 +1,7 @@
 const { Comment, User, Products } = require("../db.js");
 
 const getComment = async (req, res) => {
-  let commentTable = await Comment.findAll({
-    include: [
-      {
-        model: User,
-        attributes: ["id", "name"],
-        through: {
-          attributes: [],
-        },
-      },
-      {
-        model: Products,
-        where: { id: req.params.id },
-        attributes: ["id", "name"],
-        through: {
-          attributes: [],
-        },
-      },
-    ],
-  });
-
+  let commentTable = await Comment.findAll();
   res.send(commentTable);
 };
 
