@@ -2,6 +2,7 @@ const { User } = require("../db");
 const { encript } = require("../controllers/encript_controller");
 const jwt = require("jsonwebtoken");
 const { KEY_SECRET } = process.env;
+const { transporter } = require("../config/mailer");
 
 const getUsers = async () => {
   const result = await User.findAll();
@@ -21,9 +22,17 @@ const generateUser = async (params) => {
           picture: picture,
         },
       });
-      console.log(newUser, " new user");
+      await transporter.sendMail({
+        from: '"Mc Burger 🍔" <foo@example.com>', // sender address
+        to: email, // list of receivers
+        subject: "¡Thanks for your register!", // Subject line
+        html: "<b>Welcome to the Mc Burger App 😊</b>", // html body
+      });
+      //console.log('CREANDOOOOOO');
+      //console.log(newUser, " new user");
       return newUser[0];
     } else {
+      //console.log('deberia haber enviado mail');
       user.picture = picture;
       user.name = name;
       await user.save();
