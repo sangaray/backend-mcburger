@@ -22,6 +22,9 @@ module.exports = (sequelize) => {
     idUser: {
       type: DataTypes.STRING,
     },
+    userName: {
+      type: DataTypes.STRING,
+    },
     idProduct: {
       type: DataTypes.INTEGER,
     },

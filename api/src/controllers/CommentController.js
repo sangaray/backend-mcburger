@@ -5,176 +5,89 @@ const getComment = async (req, res) => {
   res.send(commentTable);
 };
 
+const getProductComments = async (req, res) => {
+  const { id } = req.params;
+  try {
+    if (!id) return res.status(422).send("Missing data");
+    const comments = await Comment.findAll({ where: { idProduct: id } });
+
+    res.send(Array.isArray(comments) ? comments : [comments]);
+  } catch (error) {
+    res.status(422).send(error.message);
+  }
+};
+
+const getUserComments = async (req, res) => {
+  const { id } = req.params;
+  try {
+    if (!id) return res.status(422).send("Missing data");
+    const comments = await Comment.findAll({ where: { idUser: id } });
+
+    res.send(comments);
+  } catch (error) {
+    res.status(422).send(error.message);
+  }
+};
+
 const postComment = async (req, res) => {
   try {
-    const { comment, rating, idUser, idProduct } = req.body;
-    if (!comment || !rating || !idUser || !idProduct) {
+    const { comment, rating, idUser, idProduct, userName } = req.body;
+    if (!comment || !rating || !idUser || !idProduct || !userName) {
       return res.status(422).send("Missing data");
     }
 
     const newComment = await Comment.create({
+      idUser,
+      idProduct,
       comment,
       rating,
+      userName,
     });
 
-    const searchUser = await User.findOne({
-      where: { id: idUser },
-    });
-
-    const searchProduct = await Products.findOne({
-      where: { id: idProduct },
-      include: {
-        model: Comment,
-        attributes: ["id", "rating", "comment"],
-        through: {
-          attributes: [],
-        },
-        include: {
-          model: User,
-          attributes: ["id", "name"],
-          through: {
-            attributes: [],
-          },
-        },
-      },
-    });
-
-    await newComment.addUser(searchUser);
-    await searchProduct.addComment(newComment);
-
-    let newRating = 0;
-    let newComments = [...searchProduct.comments, newComment];
-
-    for (const c of newComments) {
-      newRating += c.rating;
-    }
-
-    searchProduct.rating = (newRating / newComments.length).toFixed(1);
-
-    await searchProduct.save();
-
-    await searchProduct.save();
-
-    res.status(201);
+    res.status(201).send(newComment);
   } catch (error) {
     res.sendStatus(404);
   }
 };
 
 const putComment = async (req, res) => {
-  let { idUser, idProduct } = req.body;
-
-  let product = await Products.findOne({
-    where: { id: idProduct },
-    include: {
-      model: Comment,
-      attributes: ["id", "rating", "comment"],
-      through: {
-        attributes: [],
-      },
-      include: {
-        model: User,
-        attributes: ["id", "name"],
-        through: {
-          attributes: [],
-        },
-      },
-    },
-  });
-
-  let selected = product.comments.filter(
-    (c) => c.users[0].id === Number(idUser)
-  );
-
-  selected = selected[0];
-  if (selected) {
-    let { comment, rating } = req.body;
-    let data = { comment, rating };
-
-    let keys = Object.keys(data);
-
-    keys.forEach((k) => {
-      selected[k] = data[k];
-    });
-
-    await selected.save();
-    await product.save();
-
-    product = await Products.findOne({
-      where: { id: idProduct },
-      include: {
-        model: Comment,
-        attributes: ["id", "rating", "comment"],
-        through: {
-          attributes: [],
-        },
-        include: {
-          model: User,
-          attributes: ["id", "name"],
-          through: {
-            attributes: [],
-          },
-        },
-      },
-    });
-
-    let newRating = 0;
-    for (const c of product.comments) {
-      newRating += c.rating;
+  try {
+    const { comment, rating, idUser, idProduct, userName } = req.body;
+    if (!comment || !rating || !idUser || !idProduct || !userName) {
+      return res.status(422).send("Missing data");
     }
 
-    product.rating = (newRating / product.comments.length).toFixed(1);
+    await Comment.update(
+      {
+        idUser,
+        idProduct,
+        comment,
+        rating,
+        userName,
+      },
+      { where: { idUser, idProduct } }
+    );
 
-    await product.save();
-
-    res.send(product.comments);
-  } else {
-    res.status(404);
+    getProductComments({ params: { id: idProduct } }, res);
+  } catch (e) {
+    res.status(422).send(e.message);
   }
 };
 
 const deleteComment = async (req, res) => {
-  const { idProduct, idUser } = req.params;
+  const { idProduct, idUser } = req.query;
   try {
-    let product = await Products.findOne({
-      where: { id: idProduct },
-      include: {
-        model: Comment,
-        attributes: ["id", "rating", "comment"],
-        through: {
-          attributes: [],
-        },
-        include: {
-          model: User,
-          attributes: ["id", "name"],
-          through: {
-            attributes: [],
-          },
-        },
-      },
-    });
-
-    let newComm = product.comments.filter(
-      (c) => c.users[0].id !== Number(idUser)
-    );
-    let deleted = product.comments.filter(
-      (c) => c.users[0].id === Number(idUser)
-    );
-    Comment.destroy({ where: { id: deleted[0].id } });
-    product.removeComments(deleted);
-
-    let newRating = 0;
-    for (const c of newComm) {
-      newRating += c.rating;
+    if (!idUser || !idProduct) {
+      return res.status(422).send("Missing data");
     }
 
-    product.rating = (newRating / newComm.length).toFixed(1);
+    await Comment.destroy({
+      where: { idUser, idProduct },
+    });
 
-    await product.save();
-
-    return res.send(newComm);
-  } catch (err) {
-    return res.status(500).send(`Comment could not be deleted (${err})`);
+    getProductComments({ params: { id: idProduct } }, res);
+  } catch (e) {
+    res.status(422).send(e.message);
   }
 };
 
@@ -183,4 +96,6 @@ module.exports = {
   postComment,
   putComment,
   deleteComment,
+  getProductComments,
+  getUserComments,
 };
