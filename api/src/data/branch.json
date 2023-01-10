@@ -12,18 +12,18 @@
         },
         {
             "station": 2,
-            "address": "Pres. Roca 549",
-            "locality": "Rosario,Santa Fe",
-            "gps": "Pres. Roca 549, S2000 CXK, Santa Fe",
-            "coordenadas":[-32.94212135953638, -60.64393003539277]
+            "address": "Juramento 521",
+            "locality": "Huinca Renanco, Córdoba",
+            "gps": "Juramento 521, X6270 Huinca Renanco, Córdoba",
+            "coordenadas":[-34.84297996763283, -64.37832272962657]
             
         },
         {
             "station": 3,
-            "address": "Av. Francia 1049",
-            "locality": "Rosario, Santa Fe",
-            "gps": "Av. Francia 1049, S2002QRC Rosario, Santa Fe",
-            "coordenadas":[-32.9445415460106, -60.665973175868224]
+            "address": "Jerónimo Salguero 829",
+            "locality": "CABA",
+            "gps": "Jerónimo Salguero 829, C1192 CABA",
+            "coordenadas":[-34.600036696188404, -58.4187063]
             
         },
         {
@@ -44,10 +44,10 @@
         },
         {
             "station": 6,
-            "address": "Av. Belgrano 1353",
-            "locality": "Mina Clavero, Córdoba",
-            "gps": "Av. Belgrano 1353, Mina Clavero, Córdoba",
-            "coordenadas":[-31.723296453046903, -65.00321886265864]
+            "address": "Av. Pte. Juan Domingo Perón 390",
+            "locality": "San Luis",
+            "gps": "AAD, Av. Pte. Juan Domingo Perón 390, D5702 San Luis",
+            "coordenadas":[-33.30476258181199, -66.32542942883597]
           
         },
         {
@@ -60,18 +60,18 @@
         },
         {
             "station": 8,
-            "address": "Las Magnolias 1087",
-            "locality": "Federación, Entre Ríos",
-            "gps": "Las Magnolias 1087, E3206CIV Federación, Entre Ríos",
-            "coordenadas":[-30.98281987592543, -57.923731551185206]
+            "address": "San Martín 22",
+            "locality": "Corrientes",
+            "gps": "San Martín 22, W3400APB Corrientes",
+            "coordenadas":[-27.468365406454765, -58.85224041307138]
             
         },
         {
             "station": 9,
-            "address": "Obispo Oro 333",
-            "locality": "Cordoba",
-            "gps": "Obispo Oro 333, X5000BFG Córdoba",
-            "coordenadas":[-31.425475097778342, -64.182947749234]
+            "address": "Bartolomé Mitre 4001",
+            "locality": "CABA",
+            "gps": "Bartolomé Mitre 4001, C1201AAY CABA",
+            "coordenadas":[-34.60969271734928, -58.42293974497908]
      
         },
         {
@@ -96,6 +96,30 @@
             "locality": "CABA",
             "gps": "Parque Chacabuco, Emilio Mitre 1072, C1424AYV CABA",
             "coordenadas":[-34.63304648837675, -58.44032369265895]
+           
+        },
+        {
+            "station": 13,
+            "address": "Avenida Argentina 235",
+            "locality": "Neuquén",
+            "gps": "Avenida Argentina 235, Q8300 Neuquén",
+            "coordenadas":[-38.95244392757725, -68.05868577365065]
+           
+        },
+        {
+            "station": 14,
+            "address": "Puerto Argentino/Stanley FIQQ 1ZZ",
+            "locality": "Islas Malvinas (Falkland Islands)",
+            "gps": "Puerto Argentino/Stanley FIQQ 1ZZ, Islas Malvinas (Falkland Islands)",
+            "coordenadas":[-51.69440327326043, -57.85718138843394]
+           
+        },
+        {
+            "station": 15,
+            "address": "Gregoria Pérez 1288",
+            "locality": "Islas Malvinas (Falkland Islands)",
+            "gps": "Gregoria Pérez 1288, B1708ATL Morón, Provincia de Buenos Aires",
+            "coordenadas":[-34.684245656379694, -58.631214889156354]
            
         }
     ]
