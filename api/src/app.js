@@ -10,6 +10,7 @@ const localities = require("./routes/localities");
 const orders = require("./routes/orders");
 const mercadoPago = require("./routes/mercadoPago");
 const admin = require("./routes/admin");
+const favorites = require("./routes/favorites");
 
 require("./db.js");
 
@@ -40,6 +41,7 @@ server.use("/localities", localities);
 server.use("/payment", mercadoPago);
 server.use("/orders", orders);
 server.use("/3nVrs6oK", admin);
+server.use("/favorites", favorites);
 
 //server.use('/buyProduct', mercadoPago);
 //server.use('/orders', orders);
