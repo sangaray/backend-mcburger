@@ -1,9 +1,11 @@
 const { Router } = require("express");
 const jwt = require("jsonwebtoken");
 const { KEY_SECRET } = process.env;
+const { transporter } = require("../config/mailer");
 
 const {
   generateUser,
+  getUser,
   getUsers,
   updateUser,
   findUserBbdd,
@@ -16,6 +18,15 @@ router.get("/", async (req, res) => {
   try {
     const allUsers = await getUsers();
     res.status(200).json(allUsers);
+  } catch (e) {
+    return res.status(404).json(e.message);
+  }
+});
+
+router.post("/one", async (req, res) => {
+  try {
+    const user = await getUser(req.body);
+    return res.status(200).json(user);
   } catch (e) {
     return res.status(404).json(e.message);
   }
@@ -76,7 +87,15 @@ router.post("/login", async (req, res) => {
       const token = jwt.sign({ email: userBbdd.email }, KEY_SECRET, {
         expiresIn: "1m",
       });
-      //console.log('CORRECTOOOOO');
+      
+
+/*       await transporter.sendMail({
+        from: '"Mc Burger 🍔" <foo@example.com>', // sender address
+        to: "crgs2008@gmail.com", // list of receivers
+        subject: "¡Thanks for your register!", // Subject line
+        html: "<b>Welcome to the Mc Burger App 😊</b>", // html body
+      }); */
+      //console.log('ENVIANDOOOO');
       const data = {
         email: userBbdd.email,
         name: userBbdd.name,

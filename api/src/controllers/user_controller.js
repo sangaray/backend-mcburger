@@ -9,6 +9,12 @@ const getUsers = async () => {
   return result;
 };
 
+const getUser = async (params) => {
+  const { email } = params;
+  const result = await User.findOne({ where: { email: email } });
+  return result;
+};
+
 const generateUser = async (params) => {
   try {
     const { name, email, picture } = params;
@@ -32,6 +38,7 @@ const generateUser = async (params) => {
       //console.log(newUser, " new user");
       return newUser[0];
     } else {
+
       //console.log('deberia haber enviado mail');
       user.picture = picture;
       user.name = name;
@@ -88,18 +95,19 @@ const findUserBbdd = async (email) => {
 
 const loadUser = async () => {
   await User.create({
-    name: "Cristian",
-    first_name: "Rafael",
-    last_name: "Ganon",
-    email: "crgs2008@gmail.com",
+    name: "Admin McBurger",
+    first_name: "Administrador",
+    last_name: "McBurger",
+    email: "admin@mcburger.com",
+    picture: "https://us.123rf.com/450wm/ylivdesign/ylivdesign2110/ylivdesign211012504/176252000-hombre-con-el-icono-de-administrador-de-inscripci%C3%B3n-contorno-hombre-con-la-inscripci%C3%B3n-admin-vector-.jpg?ver=6",
     password: "admin",
     userType: "admin",
     wallet: 20000,
     address: "Palo alto - California",
-    phone_number: "+542665444444",
+    phone_number: "+54-2665847544",
   });
 
-  await User.create({
+/*   await User.create({
     name: "Sandra",
     first_name: "Noemi",
     last_name: "Garay",
@@ -109,7 +117,7 @@ const loadUser = async () => {
     wallet: 50000,
     address: "Bs As - Argentina",
     phone_number: "+549988877777",
-  });
+  }); */
 };
 
 const validateToken = (req, res, next) => {
@@ -130,6 +138,7 @@ const validateToken = (req, res, next) => {
 };
 
 module.exports = {
+  getUser,
   getUsers,
   generateUser,
   updateUser,

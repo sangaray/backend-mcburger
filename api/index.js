@@ -15,15 +15,17 @@ const { loadProducts } = require("./src/controllers/products_controller");
 const { loadCategories } = require("./src/controllers/categories_controller");
 const { loadLocalities } = require("./src/controllers/localities_controller");
 const { loadBranches } = require("./src/controllers/branches_controller");
-//const { loadUser} = require('./src/controllers/user_controller')
+const { loadUser} = require('./src/controllers/user_controller')
+require ('dotenv').config();
+const { PORT } = process.env;
 
 conn.sync({ force: true }).then(() => {
-  server.listen(3001, async () => {
+  server.listen(PORT, async () => {
     await loadCategories();
     await loadProducts();
     await loadLocalities();
     await loadBranches();
-    //await loadUser();
-    console.log("%s ----> listening at 3001"); // eslint-disable-line no-console
+    await loadUser();
+    console.log("%s ----> listening at ", PORT); // eslint-disable-line no-console
   });
 });
