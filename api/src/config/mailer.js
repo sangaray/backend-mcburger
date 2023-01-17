@@ -61,3 +61,6 @@ transporter.verify().then(() => {
 });
 
 module.exports = { transporter };
+
+/* MAIL= mcburger.pf@gmail.com
+MAIL_PASSWORD= txorzsvxhsvibpeo */

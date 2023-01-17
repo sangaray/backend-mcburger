@@ -20,13 +20,14 @@ const createPayment = async (req, res) => {
     }),
 
     back_urls: {
-      failure: "http://localhost:3000/payment",
+      failure: "https://test-deploy-topaz-nine.vercel.app/payment",
       pending: "/pending",
-      success: "http://localhost:3000/payment", // aqui despues va a ir deploy vercel/ la ruta que tenga declarada en el front
+      success: "https://test-deploy-topaz-nine.vercel.app/payment", // aqui despues va a ir deploy vercel/ la ruta que tenga declarada en el front
     },
     auto_return: "approved",
     notification_url:
-      "https://d182-2803-9800-94c0-845b-1598-d45c-29e7-8ad1.sa.ngrok.io/notificationPayment",
+     "https://d182-2803-9800-94c0-845b-1598-d45c-29e7-8ad1.sa.ngrok.io/notificationPayment",
+     //notificatip
     binary_mode: true,
   };
 
