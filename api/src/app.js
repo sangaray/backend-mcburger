@@ -9,11 +9,10 @@ const branches = require("./routes/branches");
 const localities = require("./routes/localities");
 const mercadoPago = require("./routes/mercadoPago");
 const orders = require("./routes/orders");
-const user = require("./routes/user");
+const user = require("./routes/user")
 const cors = require("cors");
 const comments = require("./routes/comments");
 const favorites = require("./routes/favorites");
-const cart = require("./routes/cart");
 
 require("./db.js");
 
@@ -47,7 +46,7 @@ server.use("/orders", orders);
 server.use("/user", user);
 server.use("/comments", comments);
 server.use("/favorites", favorites);
-server.use("/cart", cart);
+
 //server.use('/buyProduct', mercadoPago);
 //server.use('/orders', orders);
 // Error catching endware.
